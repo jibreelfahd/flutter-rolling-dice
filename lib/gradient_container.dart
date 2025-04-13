@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_apps/text_widget.dart';
-
 class GradientContianer extends StatelessWidget {
-  const GradientContianer(this.colors, {super.key});
+  GradientContianer(this.colors, {super.key});
 
   final List<Color> colors;
+  var activeDiceImage = 'assets/images/dice-1.png';
+
+  void rollDice() {
+    activeDiceImage = 'assets/images/dice-4.png';
+    print('Changing image');
+  }
 
   @override
   Widget build(context) {
@@ -17,9 +21,29 @@ class GradientContianer extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: const Center(
-        child: TextWidget('Hello Gang, Welcome!!'),
-      ),
+      child: Center(
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            activeDiceImage,
+            width: 200,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TextButton(
+            onPressed: rollDice,
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
+            ),
+            child: const Text(
+              'Roll Dice',
+              style: TextStyle(fontSize: 28),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
